@@ -1,2 +1,2 @@
 # nvim_cfg
-my simple nvim cfg
+my simple forest nvim cfg
