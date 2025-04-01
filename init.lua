@@ -39,13 +39,13 @@ require('packer').startup(function(use)
     use 'akinsho/bufferline.nvim' -- Вкладки сверху
     use 'norcalli/nvim-colorizer.lua' -- Подсветка HEX цветов
     use 'numToStr/Comment.nvim' -- Комментирование кода
-    use 'morhetz/gruvbox' -- Тема оформления
+    use 'sainnhe/everforest'-- Тема оформления
 end)
 
+-- Тема --
 
--- Тема
-vim.cmd[[colorscheme gruvbox]]
-vim.o.background = "dark" -- Темная тема
+vim.cmd[[colorscheme everforest]]
+vim.o.background = "dark" 
 
 -- Настройка LSP
 local lspconfig = require('lspconfig')
