@@ -33,8 +33,8 @@ require('packer').startup(function(use)
     use 'nvim-lualine/lualine.nvim' -- Красивый статусбар
     use 'nvim-telescope/telescope.nvim' -- Поиск файлов и строк
     use 'neovim/nvim-lspconfig' -- Настройки LSP (поддержка языков)
-    use 'hrsh7th/nvim-cmp' -- Автодополнение
-    use 'hrsh7th/cmp-nvim-lsp' -- Источник LSP для автодополнения
+    -- use 'hrsh7th/nvim-cmp' -- Автодополнение
+    -- use 'hrsh7th/cmp-nvim-lsp' -- Источник LSP для автодополнения
     use 'vim-scripts/fasm.vim' -- Поддержка синтаксиса FASM
     use 'akinsho/bufferline.nvim' -- Вкладки сверху
     use 'norcalli/nvim-colorizer.lua' -- Подсветка HEX цветов
@@ -42,10 +42,14 @@ require('packer').startup(function(use)
     use 'sainnhe/everforest'-- Тема оформления
 end)
 
--- Тема --
+
+-- Тема
 
 vim.cmd[[colorscheme everforest]]
-vim.o.background = "dark" 
+vim.o.background = "dark" -- темная тема
+
+
+
 
 -- Настройка LSP
 local lspconfig = require('lspconfig')
