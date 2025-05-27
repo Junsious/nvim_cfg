@@ -24,6 +24,7 @@ require('packer').startup(function(use)
       run = ':TSUpdate'
     }
     use 'nvim-tree/nvim-web-devicons'
+    use 'nvim-tree/nvim-tree.lua'
     use 'nvim-lualine/lualine.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'nvim-telescope/telescope.nvim'
@@ -59,6 +60,58 @@ lspconfig.bashls.setup{}
 lspconfig.clangd.setup{}
 
 require'colorizer'.setup()
+
+require('nvim-tree').setup {
+  view = {
+    width = 30,
+    side = 'left',
+    adaptive_size = false,
+  },
+  renderer = {
+    icons = {
+      show = {
+        git = true,
+        folder = true,
+        file = true,
+        folder_arrow = true,
+      },
+    },
+  },
+  filters = {
+    dotfiles = false,
+    custom = {'.git', 'node_modules', '.cache'},
+  },
+  git = {
+    enable = true,
+    ignore = false,
+  },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
+}
+
+vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
+vim.cmd([[
+  augroup NvimTreeAutoOpen
+    autocmd!
+    autocmd VimEnter * lua OpenNvimTreeIfDirOrEmpty()
+  augroup END
+]])
+
+function OpenNvimTreeIfDirOrEmpty()
+  local api = require('nvim-tree.api')
+  local fn = vim.fn
+
+  local file = fn.expand('%:p')
+  local is_empty_buffer = (fn.line('$') == 1 and fn.getline(1) == '')
+
+  if is_empty_buffer or fn.isdirectory(file) == 1 then
+    api.tree.open()
+  end
+end
 
 vim.api.nvim_set_keymap('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
