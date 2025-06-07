@@ -17,6 +17,7 @@ vim.cmd('set termguicolors')
 
 vim.cmd [[packadd packer.nvim]]
 
+
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use {
@@ -36,6 +37,7 @@ require('packer').startup(function(use)
     use 'windwp/nvim-autopairs'
     use 'sainnhe/everforest'
 end)
+
 
 vim.o.background = "dark"
 vim.cmd[[colorscheme everforest]]
